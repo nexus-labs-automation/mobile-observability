@@ -229,8 +229,28 @@ When analyzing a codebase, load references based on platform:
 **Apply skills:**
 - `skills/instrumentation-planning` - for prioritization framework
 
+## Arguments
+
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `path` | No | Module or directory to analyze (for monorepos). Defaults to current directory. |
+
+**Examples:**
+```
+# Analyze entire repo
+Launch the codebase-analyzer agent
+
+# Analyze specific module in a monorepo
+Launch the codebase-analyzer agent on ./apps/ios-app
+
+# Analyze a feature module
+Launch the codebase-analyzer agent on ./packages/checkout
+```
+
+When a path is provided, scope all file searches and analysis to that directory.
+
 ## Usage
 
 This agent is invoked by:
-- `/instrument` command - to understand codebase before generating plan
-- `/audit` command - to find existing telemetry and gaps
+- `/instrument [path]` command - to understand codebase before generating plan
+- `/audit [path]` command - to find existing telemetry and gaps

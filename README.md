@@ -58,15 +58,7 @@ Open Claude Code in your mobile project and run:
 
 Claude will analyze your codebase and generate a prioritized instrumentation plan covering crashes, performance, breadcrumbs, and user context.
 
-### 2. Debug a Crash
-
-```
-/diagnose crash
-```
-
-Then paste your crash log. Claude will identify the root cause, explain what happened, and suggest fixes.
-
-### 3. Audit Existing Telemetry
+### 2. Audit Existing Telemetry
 
 ```
 /audit
@@ -74,7 +66,7 @@ Then paste your crash log. Claude will identify the root cause, explain what hap
 
 Claude scans your codebase for existing instrumentation and identifies gaps.
 
-### 4. Ask Natural Questions
+### 3. Ask Natural Questions
 
 The plugin's skills activate automatically when you ask questions like:
 
@@ -88,7 +80,6 @@ The plugin's skills activate automatically when you ask questions like:
 | Command | Description |
 |---------|-------------|
 | `/instrument [platform]` | Generate instrumentation plan for a codebase |
-| `/diagnose [type]` | Analyze crash logs, ANRs, and performance issues |
 | `/audit [path]` | Scan for existing instrumentation and gaps |
 
 ### Command Examples
@@ -99,12 +90,6 @@ The plugin's skills activate automatically when you ask questions like:
 
 # Android with specific vendor
 /instrument android --vendor=sentry
-
-# Analyze a crash
-/diagnose crash
-
-# Analyze performance issue
-/diagnose performance
 
 # Audit current directory
 /audit
@@ -134,7 +119,6 @@ Nine focused skills provide expert guidance:
 | Agent | Use Case |
 |-------|----------|
 | `codebase-analyzer` | Explores your codebase to understand architecture and find instrumentation opportunities |
-| `issue-analyzer` | Deep-dives into crash logs, stack traces, and performance issues |
 
 **Use agents directly:**
 ```
@@ -190,8 +174,8 @@ Ready-to-use templates for:
 
 ```
 mobile-observability/
-├── commands/           # /instrument, /diagnose, /audit
-├── agents/             # codebase-analyzer, issue-analyzer
+├── commands/           # /instrument, /audit
+├── agents/             # codebase-analyzer
 ├── skills/             # 9 focused skills
 ├── hooks/              # Anti-pattern detection
 ├── references/         # 15+ guides + templates + vendor docs
