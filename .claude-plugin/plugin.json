@@ -1,0 +1,16 @@
+{
+  "name": "mobile-observability",
+  "version": "1.0.0",
+  "description": "Expert guidance and automation for mobile app observability: crash reporting, performance monitoring, session replay, and instrumentation for iOS, Android, and React Native.",
+  "author": {
+    "name": "Caleb",
+    "url": "https://github.com/nexus-labs"
+  },
+  "repository": "https://github.com/nexus-labs/mobile-observability",
+  "license": "MIT",
+  "keywords": ["mobile", "observability", "ios", "android", "react-native", "crash-reporting", "performance", "instrumentation"],
+  "commands": "./commands/",
+  "agents": "./agents/",
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
+}

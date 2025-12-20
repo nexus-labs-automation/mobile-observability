@@ -1,0 +1,40 @@
+{
+  "hooks": [
+    {
+      "matcher": {
+        "tool": "Edit",
+        "filePattern": "*.swift"
+      },
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "When editing Swift files for observability, watch for these anti-patterns:\n\n1. **PII in logs** - Never log email, phone, or user-provided text\n2. **Sync telemetry** - Never block main thread for analytics\n3. **Force unwraps in crash handlers** - Avoid `!` in error handling code\n4. **Missing offline handling** - Queue events when offline\n\nIf you see these patterns, flag them for the user."
+        }
+      ]
+    },
+    {
+      "matcher": {
+        "tool": "Edit",
+        "filePattern": "*.kt"
+      },
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "When editing Kotlin files for observability, watch for these anti-patterns:\n\n1. **PII in logs** - Never log email, phone, or user-provided text\n2. **Main thread telemetry** - Use background dispatcher for analytics\n3. **Null assertions in crash handlers** - Avoid `!!` in error handling\n4. **Missing offline handling** - Queue events when offline\n\nIf you see these patterns, flag them for the user."
+        }
+      ]
+    },
+    {
+      "matcher": {
+        "tool": "Edit",
+        "filePattern": "*.ts"
+      },
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "When editing TypeScript/React Native files for observability:\n\n1. **PII in logs** - Never log email, phone, or user-provided text\n2. **Serialization issues** - Ensure data is JSON-serializable before sending to native\n3. **Error boundaries** - Wrap components that might crash\n4. **Source maps** - Ensure source maps are uploaded for symbolication\n\nIf you see these patterns, flag them for the user."
+        }
+      ]
+    }
+  ]
+}
