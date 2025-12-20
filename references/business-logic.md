@@ -415,24 +415,12 @@ class BackgroundJobRunner {
 
 ---
 
-## Feature Flag & Experiment Observability
+## Feature Flags
 
-Track which variants users receive and why.
-
-```swift
-func getVariant(experiment: String, context: UserContext) -> String {
-    let variant = experimentService.assignVariant(experiment, context)
-
-    Observability.trackEvent("experiment.assigned", properties: [
-        "experiment": experiment,
-        "variant": variant,
-        "user_segment": context.segment,
-        "assignment_reason": experimentService.assignmentReason
-    ])
-
-    return variant
-}
-```
+See [feature-flags.md](feature-flags.md) for dedicated coverage of:
+- Flag evaluation events
+- Flag change events
+- What NOT to do (don't attach all flags to every event)
 
 ---
 
