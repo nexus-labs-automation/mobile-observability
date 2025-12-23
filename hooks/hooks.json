@@ -35,6 +35,18 @@
           "prompt": "When adding telemetry instrumentation to React Native/TypeScript, watch for these observability anti-patterns:\n\n1. **High cardinality tags** - Never use user IDs, timestamps, or UUIDs as metric tag values (explodes cost)\n2. **Unbounded payloads** - Keep event extras under 1KB; don't attach entire Redux state or large objects\n3. **Unstructured logging** - Use structured key-value pairs, not template literals for log messages\n4. **Inconsistent naming** - Follow conventions: `screen.load.HomeScreen` not `homeScreenLoaded`\n5. **PII in telemetry** - Never log email, phone, passwords, or user-provided free text\n6. **Missing context** - Always include screen name, session ID, and app version with events\n7. **Localized strings in telemetry** - NEVER use `t()`, `i18n.t()`, `intl.formatMessage()`, or any localized/translated text in logs/spans/events. Use English-only constants or error codes. Localized strings break error grouping and make logs unsearchable across locales.\n\nFlag these issues for the user if detected."
         }
       ]
+    },
+    {
+      "matcher": {
+        "tool": "Edit",
+        "filePattern": "*.dart"
+      },
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "When adding telemetry instrumentation to Flutter/Dart, watch for these observability anti-patterns:\n\n1. **High cardinality tags** - Never use user IDs, timestamps, or UUIDs as metric tag values (explodes cost)\n2. **Unbounded payloads** - Keep event extras under 1KB; don't attach entire state objects or widget trees\n3. **Unstructured logging** - Use structured key-value pairs, not string interpolation\n4. **Inconsistent naming** - Follow conventions: `screen.load.HomeScreen` not `homeScreenLoaded`\n5. **PII in telemetry** - Never log email, phone, passwords, or user-provided free text\n6. **Missing context** - Always include screen name, session ID, and app version with events\n7. **Localized strings in telemetry** - NEVER use `AppLocalizations.of(context)!.`, `S.of(context).`, `context.l10n.`, or any localized text in logs/spans/events. Use English-only constants or error codes. Localized strings break error grouping and make logs unsearchable across locales.\n8. **PlatformException swallowing** - Always capture and report `PlatformException` from platform channels; don't silently catch and ignore\n\nFlag these issues for the user if detected."
+        }
+      ]
     }
   ]
 }
