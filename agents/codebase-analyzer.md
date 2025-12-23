@@ -165,6 +165,7 @@ Search for existing SDKs:
 | Embrace | `import Embrace` | `io.embrace` | `@embrace-io/react-native` | `embrace` |
 | OpenTelemetry | `import OpenTelemetry` | `io.opentelemetry` | N/A | N/A |
 | Measure.sh | `import Measure` | `sh.measure` | N/A | `measure_flutter` |
+| MetricKit | `import MetricKit`, `MXMetricManager` | N/A | N/A | N/A |
 
 Search patterns:
 ```bash

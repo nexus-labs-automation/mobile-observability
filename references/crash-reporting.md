@@ -1255,6 +1255,7 @@ alerts:
 - **[performance.md](performance.md)** - Slow operations leading to ANRs
 - **[mobile-challenges.md](mobile-challenges.md)** - Offline crash storage
 - **[platforms/](platforms/)** - Vendor-specific crash reporting setup
+- **[metrickit.md](metrickit.md)** - iOS supplementary diagnostics (optional)
 
 ## Reusable Templates
 
