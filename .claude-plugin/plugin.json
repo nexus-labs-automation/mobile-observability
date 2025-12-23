@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "Expert guidance and automation for mobile app observability: crash reporting, performance monitoring, session replay, and instrumentation for iOS, Android, React Native, and Flutter.",
   "author": {
-    "name": "Caleb",
+    "name": "Caleb Davis",
     "url": "https://github.com/calube"
   },
   "repository": "https://github.com/calube/mobile-observability",
