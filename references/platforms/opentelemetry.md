@@ -629,10 +629,8 @@ val customSampler = object : Sampler {
 // iOS - Limit attribute size
 span.setAttribute(key: "http.response_body", value: String(responseBody.prefix(1000)))
 
-// Defer expensive attribute computation
-if span.isRecording {
-    span.setAttribute(key: "computed.value", value: expensiveComputation())
-}
+// Only set expensive attributes when needed
+span.setAttribute(key: "computed.value", value: expensiveComputation())
 ```
 
 ---

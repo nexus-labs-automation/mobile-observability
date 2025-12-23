@@ -349,7 +349,7 @@ class _ErrorBoundaryState extends State<ErrorBoundary> {
   }
 }
 
-class ErrorHandler extends StatelessWidget {
+class ErrorHandler extends StatefulWidget {
   final Widget child;
   final void Function(Object error, StackTrace? stack) onError;
 
@@ -360,13 +360,22 @@ class ErrorHandler extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return ErrorWidget.builder = (FlutterErrorDetails details) {
-      onError(details.exception, details.stack);
+  State<ErrorHandler> createState() => _ErrorHandlerState();
+}
+
+class _ErrorHandlerState extends State<ErrorHandler> {
+  @override
+  void initState() {
+    super.initState();
+    // Set global error widget builder once
+    ErrorWidget.builder = (FlutterErrorDetails details) {
+      widget.onError(details.exception, details.stack);
       return ErrorWidget(details.exception);
     };
-    return child;
   }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }
 ```
 
@@ -901,12 +910,8 @@ Future<void> spawnInstrumentedIsolate<T>(
 
 // Worker isolate with error handling
 void isolateEntryPoint(SendPort sendPort) {
-  // Critical: Set up error handling in the isolate
-  Isolate.current.addErrorListener(
-    RawReceivePort((errorData) {
-      // Error will be forwarded to parent isolate
-    }).sendPort,
-  );
+  // Note: Error handling must be done via try-catch in the isolate
+  // Isolate.current.addErrorListener() does not exist in Dart
 
   try {
     // Perform work

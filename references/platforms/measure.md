@@ -559,17 +559,17 @@ RETENTION_CRASH_REPORTS=1y      # Crash reports
 ### Network Filtering
 
 ```kotlin
-// Android - Exclude sensitive endpoints
-Measure.init(
-    context = this,
-    config = MeasureConfig(
-        networkFilter = { request ->
-            // Exclude URLs containing sensitive paths
-            !request.url.contains("/api/auth/") &&
-            !request.url.contains("/api/payment/")
-        }
-    )
-)
+// Android - Exclude sensitive endpoints from auto-capture
+// Note: Check Measure.sh SDK docs for current API.
+// URL filtering may be done via event processing or backend configuration.
+//
+// Example pattern (if SDK supports it):
+// MeasureConfig(
+//     httpUrlFilter = listOf(
+//         "/api/auth/",
+//         "/api/payment/"
+//     )
+// )
 ```
 
 ### Screenshot Privacy
