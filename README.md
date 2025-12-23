@@ -1,177 +1,136 @@
-# Mobile Observability Plugin for Claude Code
+# Mobile Observability Plugin
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://claude.ai/code)
-[![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20Android%20%7C%20React%20Native%20%7C%20Flutter-green)](https://github.com/calube/mobile-observability)
-
-**Teach Claude how to instrument mobile apps correctly.**
-
-This plugin gives Claude expert knowledge in mobile observability — what to instrument, what context to attach, and what mistakes to avoid. The result: telemetry that's useful when something breaks.
+Teaches Claude how to instrument mobile apps correctly — what to measure, what context to attach, and what mistakes to avoid.
 
 ## The Problem
 
 Most mobile teams instrument poorly:
 
-| Problem | Symptom |
-|---------|---------|
-| **Instrument too little** | Can't debug production issues |
-| **Instrument too much** | Noise, cost, battery drain |
-| **Wrong context** | Errors without enough data to act on |
+- **Too little** — Can't debug production issues
+- **Too much** — Noise, cost, battery drain
+- **Wrong context** — Errors without enough data to act on
 
-This plugin teaches Claude **User-Focused Observability** — linking user intentions with app telemetry so you can answer: *"Why did users fail to complete their goal?"*
+This plugin teaches Claude **User-Focused Observability**: linking user intentions with app telemetry so you can answer *"Why did users fail to complete their goal?"*
 
 ## Installation
-
-Requires [Claude Code](https://claude.ai/code).
-
-**From the marketplace (recommended):**
 
 ```bash
 claude plugin marketplace add calube/mobile-observability
 claude plugin install mobile-observability
 ```
 
-**From source:**
-
-```bash
-git clone https://github.com/calube/mobile-observability.git
-cd mobile-observability
-claude plugin install .
-```
-
-## Workflows
-
-### 1. Plan Instrumentation for a Codebase
-
-```
-/instrument ios
-```
-
-Claude analyzes your project and generates a prioritized instrumentation plan.
-
-### 2. Audit Existing Telemetry
-
-```
-/audit features/onboarding
-```
-
-Find gaps in a specific module's instrumentation.
-
-### 3. Review Before Merging
-
-```
-Launch the instrumentation-reviewer agent on features/checkout
-```
-
-Check for anti-patterns, missing context, and naming issues before code ships.
-
-### 4. Ask Questions
-
-Skills activate automatically:
-
-- *"How should I instrument this payment flow?"*
-- *"What context should I attach to crashes?"*
-- *"Set up session replay with Sentry"*
-
-## What's Included
+## Usage
 
 ### Commands
 
+```
+/instrument ios
+/audit features/checkout
+```
+
+### Natural Prompts
+
+```
+"How should I instrument this payment flow?"
+"What context should I attach to crashes?"
+"Set up session replay with Bitdrift"
+"Review this code for observability anti-patterns"
+"What's missing from our crash reporting setup?"
+```
+
+## Commands
+
 | Command | Description |
 |---------|-------------|
-| `/instrument [platform]` | Generate instrumentation plan |
-| `/audit [path]` | Scan for instrumentation gaps |
+| `/instrument [platform]` | Generate prioritized instrumentation plan for iOS, Android, React Native, or Flutter |
+| `/audit [path]` | Scan existing code for instrumentation gaps and anti-patterns |
 
-### Agents
+## Agents
 
-| Agent | Use Case |
-|-------|----------|
-| `codebase-analyzer` | Explore architecture, find instrumentation opportunities |
-| `instrumentation-reviewer` | Review code for anti-patterns and missing context |
+Agent definitions that Claude reads and follows when performing analysis tasks.
 
-### Skills
+### codebase-analyzer
 
-8 skills for common instrumentation tasks:
+Explores mobile codebases to understand architecture and identify instrumentation opportunities.
 
-| Skill | Use When |
-|-------|----------|
-| `instrumentation-planning` | Deciding what to measure |
-| `crash-instrumentation` | Setting up crash capture with context |
-| `session-replay` | Configuring visual debugging |
-| `interaction-latency` | Tracking button/tap response time |
-| `navigation-latency` | Measuring screen load and TTI |
-| `network-tracing` | Instrumenting API calls |
-| `user-journey-tracking` | Tracking funnels and conversions |
-| `symbolication-setup` | Configuring dSYM, ProGuard, source maps |
+**Focus Areas:**
+- Platform and architecture detection (MVVM, TCA, Clean Architecture)
+- Existing telemetry SDK inventory
+- Entry points and key user flows
+- Network, persistence, and state management layers
 
-### Anti-Pattern Hooks
+**Output:**
+- Platform summary with language/version
+- Architecture pattern identification
+- Existing SDK coverage assessment
+- Gap analysis with priority ranking
 
-Warnings when editing `.swift`, `.kt`, `.ts`, or `.dart` files:
+### instrumentation-reviewer
 
-- **High cardinality tags** — User IDs as metric labels explode costs
-- **Unbounded payloads** — Attaching entire state objects
-- **PII in telemetry** — Logging emails, phones, or user input
-- **Missing context** — Events without screen/session/job
+Reviews code changes for observability issues before they ship.
 
-### Reference Library
+**Focus Areas:**
+- Anti-patterns (PII leaks, high cardinality, sync telemetry)
+- Missing context (no user ID, no session, no screen)
+- Naming consistency
+- Vendor best practices
 
-25+ guides covering:
+**Output:**
+- Issues by severity with file:line references
+- Specific fixes with code examples
+- Vendor guideline references
 
-**Methodology**
-- User-Focused Observability — intent, outcomes, friction signals
-- Jobs-to-be-Done — instrument what matters for user goals
+## Skills
 
-**Platforms**
-- iOS (Swift/SwiftUI, MetricKit, os_signpost)
-- Android (Kotlin/Compose, Perfetto, ANR)
-- React Native (Expo, Hermes, source maps)
-- Flutter (Dart error handling, native bridges, widget lifecycle)
+8 skills that activate automatically based on context:
 
-**Topics**
-- Crash capture and breadcrumbs
-- Performance (app start, screen load, network)
-- Business logic (decisions, state machines, background jobs)
-- Feature flags (evaluation events, what not to do)
-- Session replay and privacy
+| Skill | Trigger |
+|-------|---------|
+| `instrumentation-planning` | "What should I measure?" |
+| `crash-instrumentation` | "How to capture crashes with context" |
+| `session-replay` | "Set up session replay" |
+| `interaction-latency` | "Track button response time" |
+| `navigation-latency` | "Track screen load time" |
+| `network-tracing` | "Trace API requests" |
+| `user-journey-tracking` | "Track user funnels" |
+| `symbolication-setup` | "Configure dSYM upload" |
 
-**Vendors**
-- Sentry, Datadog, Embrace, Bugsnag, Bitdrift, Firebase, OpenTelemetry, Measure.sh
+## When to Use
 
-**Templates**
-- Screen load tracking
-- Error boundaries
-- Breadcrumb managers
-- Navigation tracking
+**Use this plugin for:**
+- Adding observability to a new or existing mobile app
+- Setting up crash reporting, performance monitoring, or session replay
+- Choosing between vendors (Sentry, Datadog, Embrace, Bitdrift, Firebase, etc.)
+- Reviewing instrumentation code for anti-patterns
+- Understanding what context to attach to errors
 
-## Plugin Structure
+**Don't use for:**
+- Backend/server observability
+- Web frontend (different patterns)
+- General logging questions unrelated to mobile
+
+## Directory Structure
 
 ```
 mobile-observability/
 ├── commands/       # /instrument, /audit
 ├── agents/         # codebase-analyzer, instrumentation-reviewer
 ├── skills/         # 8 instrumentation skills
-├── hooks/          # Anti-pattern detection
-└── references/     # 20+ guides, templates, vendor docs
+├── hooks/          # Anti-pattern warnings for Swift/Kotlin/TypeScript/Dart
+└── references/     # 25+ guides covering methodology, platforms, vendors
 ```
 
-## Who This Is For
+## Philosophy
 
-- Mobile developers adding observability to iOS, Android, React Native, or Flutter
-- Teams setting up Sentry, Datadog, Embrace, Bugsnag, Bitdrift, Firebase, or OpenTelemetry
-- Anyone who wants actionable telemetry, not just data
+1. **Start with crashes** — Get crash reporting and symbolication right before adding anything else
+2. **Context over volume** — One error with full context beats 100 without
+3. **User intent + system state** — Link what users tried to do with device conditions (memory, network, battery)
+4. **Avoid anti-patterns early** — PII leaks and high cardinality are expensive to fix later
 
-## Contributing
+## Author
 
-Contributions welcome:
-
-- Additional vendor guides (New Relic, AppDynamics, Instabug)
-- Platform-specific examples
-- Bug reports and feedback
+[Caleb Davis](https://github.com/calube)
 
 ## License
 
 MIT — see [LICENSE](LICENSE)
-
----
-
-Built with [Claude Code](https://claude.ai/code).
