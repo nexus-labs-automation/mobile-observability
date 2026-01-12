@@ -41,16 +41,16 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 ```kotlin
 // build.gradle.kts (project)
 plugins {
-    id("io.embrace.swazzler") version "6.0.0" apply false
+    id("io.embrace.gradle") version "8.0.0" apply false
 }
 
 // build.gradle.kts (app)
 plugins {
-    id("io.embrace.swazzler")
+    id("io.embrace.gradle")
 }
 
 dependencies {
-    implementation("io.embrace:embrace-android-sdk:6.0.0")
+    implementation("io.embrace:embrace-android-sdk:8.0.0")
 }
 ```
 
@@ -59,7 +59,7 @@ dependencies {
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Embrace.getInstance().start(this)
+        Embrace.start(this)
     }
 }
 ```
@@ -70,8 +70,10 @@ class MyApplication : Application() {
   "app_id": "YOUR_APP_ID",
   "api_token": "YOUR_API_TOKEN",
   "ndk_enabled": true,
-  "crash_handler": {
-    "enabled": true
+  "sdk_config": {
+    "crash_handler": {
+      "enabled": true
+    }
   }
 }
 ```
@@ -120,33 +122,8 @@ Embrace.client?.metadata.addProperty(
 
 ```kotlin
 // Android - Add session properties
-Embrace.getInstance().addSessionProperty("user_tier", "premium", true)
-Embrace.getInstance().addSessionProperty("cart_value", cart.total.toString(), false)
-```
-
-### Moments (User Flows)
-
-Track critical user flows with start/end timing.
-
-```swift
-// iOS - Track a moment
-Embrace.client?.startMoment(name: "checkout_flow")
-
-// ... user completes checkout
-
-Embrace.client?.endMoment(
-    name: "checkout_flow",
-    properties: ["order_value": String(order.total)]
-)
-```
-
-```kotlin
-// Android - Track a moment
-Embrace.getInstance().startMoment("checkout_flow")
-
-// ... user completes checkout
-
-Embrace.getInstance().endMoment("checkout_flow", mapOf("order_value" to order.total.toString()))
+Embrace.addSessionProperty("user_tier", "premium", true)
+Embrace.addSessionProperty("cart_value", cart.total.toString(), false)
 ```
 
 ### Log Messages
@@ -168,8 +145,8 @@ Embrace.client?.log(
 
 ```kotlin
 // Android - Log with severity
-Embrace.getInstance().logInfo("Payment processing started", mapOf("method" to paymentMethod))
-Embrace.getInstance().logError("Payment failed", mapOf("error_code" to error.code))
+Embrace.logInfo("Payment processing started", mapOf("method" to paymentMethod))
+Embrace.logError("Payment failed", mapOf("error_code" to error.code))
 ```
 
 ### User Identification
@@ -186,12 +163,12 @@ Embrace.client?.clearUserInfo()
 
 ```kotlin
 // Android - Set user
-Embrace.getInstance().setUserIdentifier("user_123")
-Embrace.getInstance().setUsername("John Doe")
-Embrace.getInstance().setUserEmail("john@example.com")
+Embrace.setUserIdentifier("user_123")
+Embrace.setUsername("John Doe")
+Embrace.setUserEmail("john@example.com")
 
 // Clear on logout
-Embrace.getInstance().clearUserInfo()
+Embrace.clearUserInfo()
 ```
 
 ### Spans & Traces
@@ -209,13 +186,13 @@ span?.end()
 
 ```kotlin
 // Android - Create spans
-val span = Embrace.getInstance().createSpan("fetch_product")
-span?.addAttribute("product_id", productId)
-span?.start()
+val span = Embrace.createSpan("fetch_product")
+span.addAttribute("product_id", productId)
+span.start()
 
 // ... perform operation
 
-span?.stop()
+span.stop()
 ```
 
 ### Network Capture
@@ -251,7 +228,7 @@ Embrace groups crashes intelligently by:
 ### ANR Detection
 
 ```swift
-// iOS - ANR/hang detection is automatic
+// iOS - hang detection is automatic
 // Configure threshold in dashboard
 
 // Android - ANR auto-detected
@@ -312,7 +289,7 @@ Visual timeline of every user session:
 - Logs
 - Crashes
 - ANRs
-- Custom moments
+- Custom traces
 
 ### Crash Analysis
 
@@ -326,7 +303,7 @@ Visual timeline of every user session:
 - App startup time
 - Screen load time
 - Network latency
-- Custom moments timing
+- Custom trace timing
 
 ---
 
@@ -367,7 +344,7 @@ func safeAsync<T>(
 ```kotlin
 // Capture non-fatal errors
 fun handleError(error: Throwable, context: String) {
-    Embrace.getInstance().logError(
+    Embrace.logError(
         "Error in $context",
         mapOf(
             "error_type" to error.javaClass.simpleName,
@@ -379,7 +356,7 @@ fun handleError(error: Throwable, context: String) {
 
 // Global error handler
 Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
-    Embrace.getInstance().logError(
+    Embrace.logError(
         "Uncaught exception",
         mapOf(
             "thread" to thread.name,
@@ -487,7 +464,7 @@ Configure in Embrace Dashboard → Alerts:
 |------------|-----------|--------|
 | **Crash rate spike** | >1% in 15 min | Page on-call |
 | **ANR rate** | >0.5% | Slack notification |
-| **Moment failure** | >5% for key flows | Slack notification |
+| **Trace failure** | >5% for key flows | Slack notification |
 | **New crash type** | Any | Email team |
 | **Startup regression** | >20% slower | Daily digest |
 
@@ -506,7 +483,7 @@ Dashboard → Settings → Integrations → PagerDuty
 
 | Practice | Implementation |
 |----------|----------------|
-| **Name moments clearly** | `checkout_flow`, `search_complete` |
+| **Name traces clearly** | `checkout_flow`, `search_complete` |
 | **Add context** | Session properties for user segments |
 | **Track user ID** | Enable user timeline search |
 | **Mark startup end** | Call `endAppStartup()` when truly ready |
@@ -518,10 +495,10 @@ Dashboard → Settings → Integrations → PagerDuty
 
 | Don't | Why | Do Instead |
 |-------|-----|------------|
-| Start many moments without ending | Memory leak, unclear timelines | Always pair start/end |
+| Start spans without ending | Memory leak, unclear timelines | Always pair start/end |
 | Log PII in messages | Compliance risk | Use sanitized IDs |
 | Skip user identification | Can't find specific sessions | Set user ID on auth |
-| Ignore moment failures | Misses conversion issues | Add failure conditions |
+| Ignore trace failures | Misses conversion issues | Add failure conditions |
 
 ---
 
