@@ -7,7 +7,7 @@ OpenTelemetry setup for iOS and Android mobile apps. Use when you need vendor-ne
 | Platform | Version | Tracing | Metrics | Logs | Maturity |
 |----------|---------|---------|---------|------|----------|
 | **iOS** | v2.3.0 | ✅ Stable | ⚠️ Outdated spec | 🧪 Beta | Production-ready for traces |
-| **Android** | v1.0.0-rc.1 | ✅ RC | ✅ RC | ✅ RC | Release Candidate |
+| **Android** | v1.0.1 | ✅ Stable | ✅ Stable | ✅ Stable | Production-ready |
 | **React Native** | N/A | ❌ | ❌ | ❌ | Use vendor SDKs |
 
 **Key Differences**:
@@ -237,7 +237,7 @@ android {
 
 dependencies {
     // BOM for version management
-    implementation(platform("io.opentelemetry.android:opentelemetry-android-bom:1.0.0-rc.1-alpha"))
+    implementation(platform("io.opentelemetry.android:opentelemetry-android-bom:1.0.1"))
 
     // Core SDK
     implementation("io.opentelemetry.android:instrumentation")
