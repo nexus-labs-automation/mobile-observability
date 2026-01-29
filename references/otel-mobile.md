@@ -9,19 +9,20 @@ topics:
 platforms: [ios, android, react-native]
 vendors: [generic]
 complexity: intermediate
-last_updated: 2025-12-20
+last_updated: 2026-01-20
 ---
 
 # OpenTelemetry on Mobile
 
-OpenTelemetry is the industry standard for observability, but mobile support is **not production-ready**. This document covers the current landscape and how to future-proof your instrumentation.
+OpenTelemetry is the industry standard for observability, but mobile support is **not production-ready** on all platforms. This document covers the current landscape and how to future-proof your instrumentation.
 
-## Current State (December 2025)
+## Current State (January 2026)
 
 | Platform | SDK | Status | Production Ready? |
 |----------|-----|--------|-------------------|
 | iOS | `opentelemetry-swift` | Stable (Traces), Beta (Logs) | Yes (Traces only) |
-| Android | `opentelemetry-android` | Release Candidate (1.0.0-rc.1) | Near-stable |
+| Android | `opentelemetry-android` | Stable | Yes |
+| Kotlin Multiplatform | `opentelemetry-kotlin` | Alpha (Traces), Alpha (Logs) | No |
 | React Native | None official | N/A | No |
 
 ### Why OTel Struggles on Mobile
@@ -36,6 +37,8 @@ OTel was designed for server-side workloads. Mobile has unique constraints:
 | Crashes | Process dumps | Symbolication needed |
 | Sessions | Request-based | User session continuity |
 | Replay | Not needed | Critical for debugging |
+
+The existing OTel distributions don't solve all these constraints but are improving over time.
 
 ## Recommended Approach
 
@@ -61,6 +64,8 @@ Mobile App
 ### Future-Proof with OTel-Compatible Naming
 
 Use OTel semantic conventions now. Zero runtime cost, easier migration later.
+
+Semantic conventions are defined in the OpenTelemetry semconv specification: https://opentelemetry.io/docs/specs/semconv/
 
 #### Span Naming
 
@@ -136,7 +141,7 @@ Wait for these signals before adopting OTel SDKs directly:
 - [ ] Session replay integration
 - [ ] Crash symbolication pipeline
 
-**Estimated timeline:** Android stable expected Q1 2025; Swift traces already stable; full mobile parity 6-12 months
+**Estimated timeline:** Full mobile parity 6-12 months
 
 ## Migration Path
 
