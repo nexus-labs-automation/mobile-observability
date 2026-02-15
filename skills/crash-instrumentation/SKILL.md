@@ -97,3 +97,5 @@ See `references/crash-reporting.md` for:
 - Vendor SDK configuration
 
 See `skills/symbolication-setup` for readable stack traces.
+
+See `skills/metrickit-integration` for optional iOS system diagnostics.
