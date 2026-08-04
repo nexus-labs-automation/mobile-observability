@@ -10,7 +10,7 @@ Without these, you're flying blind.
 
 | Item | Priority | Notes |
 |------|----------|-------|
-| Crash reporting SDK integrated | P0 | Sentry, Datadog, Crashlytics, etc. |
+| Crash reporting SDK integrated | P0 | Sentry, Datadog, New Relic, Crashlytics, etc. |
 | Native crash symbolication | P0 | Upload dSYMs (iOS) and mapping files (Android) |
 | Unhandled exception handler | P0 | Global error boundary or equivalent |
 | Unhandled promise rejection | P0 | Often missed, causes silent failures |

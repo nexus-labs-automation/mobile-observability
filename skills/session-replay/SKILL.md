@@ -59,4 +59,4 @@ Don't record everything. Target:
 See `references/session-replay.md` for:
 - Platform-specific setup
 - Privacy masking patterns
-- Vendor configurations (Sentry, Datadog)
+- Vendor configurations (Sentry, Datadog, New Relic)

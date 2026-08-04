@@ -443,7 +443,7 @@ val config = OtelRumConfig.builder(application = this)
 
 ### Use Vendor SDK When:
 
-✅ **Session replay needed**: Sentry, Datadog, Embrace provide this; OTel doesn't
+✅ **Session replay needed**: Sentry, Datadog, Embrace, New Relic provide this; OTel doesn't
 ✅ **Rich integrations**: Vendor SDKs have better framework-specific support
 ✅ **Error grouping**: Smart error aggregation not available in raw OTel
 ✅ **Lower setup cost**: Vendor SDKs are plug-and-play

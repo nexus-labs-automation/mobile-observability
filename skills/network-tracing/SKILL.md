@@ -60,6 +60,7 @@ Client Request
 | Sentry | Auto URLSession swizzling | OkHttp integration | Automatic |
 | Datadog | URLSession delegate | OkHttp interceptor | Semi-auto |
 | Embrace | Auto-instrumentation | Auto-instrumentation | Automatic |
+| New Relic | Auto URLSession instrumentation | Auto OkHttp/HttpURLConnection | Automatic |
 | Custom | Manual interceptor | Manual interceptor | Manual |
 
 **Automatic (swizzling):** Less code, may miss custom clients

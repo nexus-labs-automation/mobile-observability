@@ -100,7 +100,7 @@ Reviews code changes for observability issues before they ship.
 **Use this plugin for:**
 - Adding observability to a new or existing mobile app
 - Setting up crash reporting, performance monitoring, or session replay
-- Choosing between vendors (Sentry, Datadog, Embrace, Bitdrift, Firebase, etc.)
+- Choosing between vendors (Sentry, Datadog, Embrace, Bitdrift, Firebase, New Relic, etc.)
 - Reviewing instrumentation code for anti-patterns
 - Understanding what context to attach to errors
 
