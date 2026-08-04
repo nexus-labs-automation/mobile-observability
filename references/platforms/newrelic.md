@@ -493,7 +493,7 @@ FACET requestUrl
 SINCE 1 hour ago
 
 -- p95 interaction duration for key flow
-SELECT percentile(duration, 95)
+SELECT percentile(interactionDuration, 95)
 FROM Mobile
 WHERE name = 'checkout_flow'
 SINCE 1 day ago
