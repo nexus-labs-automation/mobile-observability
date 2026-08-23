@@ -588,6 +588,60 @@ dSYM processing takes 1-5 minutes. Don't panic if initial crashes show raw addre
 
 ---
 
+## MetricKit Integration (Optional)
+
+MetricKit provides supplementary diagnostic data from iOS—crash reports, hang call trees, and system metrics that augment your existing telemetry.
+
+### Quick Setup
+
+```swift
+import MetricKit
+
+class AppDelegate: UIResponder, UIApplicationDelegate, MXMetricManagerSubscriber {
+
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if #available(iOS 13.0, *) {
+            MXMetricManager.shared.add(self)
+        }
+        return true
+    }
+
+    func didReceive(_ payloads: [MXMetricPayload]) {
+        // Daily aggregated metrics
+    }
+
+    @available(iOS 14.0, *)
+    func didReceive(_ payloads: [MXDiagnosticPayload]) {
+        // Diagnostic reports with stack traces
+    }
+}
+```
+
+### What You Get
+
+- Crash diagnostics (some stack traces)
+- Hang diagnostics with call trees
+- CPU/disk exception stack traces
+- App exit reason counts
+
+### What You Don't Get
+
+- **OOM stack traces** (only exit counts)
+- NSException name/message details
+- User context or breadcrumbs
+- Real-time delivery (24hr+ delay)
+
+### When to Use
+
+MetricKit is best as **supplementary diagnostics** that correlate with your existing telemetry by timestamp—not as a primary crash reporter.
+
+See `references/metrickit.md` for comprehensive coverage.
+See `skills/metrickit-integration` for quick setup.
+See `references/templates/metrickit-subscriber.template.md` for copy-paste code.
+
+---
+
 ## Reusable Templates
 
 - **[templates/screen-load-tracking.template.md](templates/screen-load-tracking.template.md)** - iOS screen load tracking with os_signpost

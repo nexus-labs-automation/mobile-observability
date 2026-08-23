@@ -166,6 +166,7 @@ Search for existing SDKs:
 | New Relic | `import NewRelic` | `com.newrelic.agent.android` | `newrelic-react-native-agent` | `newrelic_mobile` |
 | OpenTelemetry | `import OpenTelemetry` | `io.opentelemetry` | N/A | N/A |
 | Measure.sh | `import Measure` | `sh.measure` | N/A | `measure_flutter` |
+| MetricKit | `import MetricKit`, `MXMetricManager` | N/A | N/A | N/A |
 
 Search patterns:
 ```bash
