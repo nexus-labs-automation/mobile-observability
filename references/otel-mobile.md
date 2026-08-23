@@ -47,7 +47,7 @@ The existing OTel distributions don't solve all these constraints but are improv
 ```
 Mobile App
     │
-    ├── Sentry/Datadog/Embrace SDK (production-ready)
+    ├── Sentry/Datadog/Embrace/New Relic SDK (production-ready)
     │
     └── Vendor Backend
             │
@@ -60,6 +60,7 @@ Mobile App
 - Sentry: Can forward to OTel collectors
 - Datadog: OTel ingestion supported
 - Embrace: OTel export in roadmap
+- New Relic: Native OTLP ingestion (`https://otlp.nr-data.net`) — see [Vendor OTLP Endpoints](platforms/opentelemetry.md#vendor-otlp-endpoints)
 
 ### Future-Proof with OTel-Compatible Naming
 

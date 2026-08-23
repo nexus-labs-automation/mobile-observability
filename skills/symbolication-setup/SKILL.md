@@ -153,6 +153,7 @@ sentry-cli sourcemaps explain <event-id>
 | Bugsnag | `bugsnag-cli upload` with `--dry-run` |
 | Datadog | Dashboard → Error Tracking → Symbol Files |
 | bitdrift | Dashboard or CLI for dSYM, Gradle plugin for ProGuard |
+| New Relic | iOS dSYM via build script or `newrelic-cli`; Android ProGuard auto-uploaded by NR Gradle plugin |
 
 ## Related Skills
 

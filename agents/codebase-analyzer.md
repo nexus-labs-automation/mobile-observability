@@ -163,6 +163,7 @@ Search for existing SDKs:
 | Datadog | `import Datadog` | `com.datadog` | `@datadog/mobile-react-native` | `datadog_flutter` |
 | Firebase | `import Firebase` | `com.google.firebase` | `@react-native-firebase` | `firebase_crashlytics` |
 | Embrace | `import Embrace` | `io.embrace` | `@embrace-io/react-native` | `embrace` |
+| New Relic | `import NewRelic` | `com.newrelic.agent.android` | `newrelic-react-native-agent` | `newrelic_mobile` |
 | OpenTelemetry | `import OpenTelemetry` | `io.opentelemetry` | N/A | N/A |
 | Measure.sh | `import Measure` | `sh.measure` | N/A | `measure_flutter` |
 

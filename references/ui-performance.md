@@ -2625,7 +2625,7 @@ This reference connects to:
 - **[performance.md](performance.md)** - App start and screen load spans
 - **[native-mobile.md](native-mobile.md)** - Platform-specific APIs (MetricKit, Perfetto)
 - **[mobile-challenges.md](mobile-challenges.md)** - Offline collection of UI metrics
-- **Platform docs** - Sentry/Datadog/Embrace specific APIs for these metrics
+- **Platform docs** - Sentry/Datadog/Embrace/New Relic specific APIs for these metrics
 
 ## Reusable Templates
 

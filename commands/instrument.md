@@ -11,7 +11,7 @@ Generate a comprehensive instrumentation plan for a mobile codebase.
 **Arguments:**
 - `platform`: `ios`, `android`, `react-native`, `flutter`, or `auto` (detect from codebase)
   - Invalid values: Error with "Invalid platform. Use: ios|android|react-native|flutter|auto"
-- `--vendor`: Optional. `sentry`, `datadog`, `embrace`, `bugsnag`, `bitdrift`, `firebase`, `opentelemetry`, `measure`
+- `--vendor`: Optional. `sentry`, `datadog`, `embrace`, `bugsnag`, `bitdrift`, `firebase`, `newrelic`, `opentelemetry`, `measure`
   - Format: `--vendor=sentry` or `--vendor sentry` (both accepted)
   - Invalid values: Warning with "Unknown vendor, using generic patterns"
 
